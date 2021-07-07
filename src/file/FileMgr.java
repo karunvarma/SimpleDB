@@ -76,7 +76,6 @@ public class FileMgr {
 
     /**
      * Writing the contents of the page into the specified block.
-     * or get the block contents from the page
      * @param blockId
      * @param page
      */
@@ -111,9 +110,27 @@ public class FileMgr {
         return randomAccessFile;
     }
 
-    public BlockId append(String filename)
+    /**
+     * It basically writes a empty buffer into the page
+     * @param filename on whih the operatons are performed
+     * @return the block number of the new created buffer
+     */
+    public synchronized BlockId append(String filename)
     {
-        return null;
+        int newBlockNumber = length(filename);
+        System.out.println("fasak"+newBlockNumber);
+        BlockId blockId = new BlockId(filename,newBlockNumber);
+        byte[] b = new byte[blockSize];
+        try{
+            RandomAccessFile f = getFile(filename);
+            // move the file pointer to the new starting location
+            f.seek(blockSize*blockId.getBlockNum());
+            f.write(b);
+
+        } catch (IOException e) {
+            throw new RuntimeException("Cannot append a block");
+        }
+        return blockId;
     }
 
     public boolean isNew()
@@ -121,6 +138,12 @@ public class FileMgr {
         return isNew;
     }
 
+
+    /**
+     * Returns the no of blocks inside the given the filename
+     * @param fileName
+     * @return block count
+     */
     public int length(String fileName)
     {
         try

@@ -23,11 +23,10 @@ public class Page {
 
     /**
      * creates a page that gets its
-     * memory from a Java array; this constructor is used primarily by the log manage
+     * memory from a Java array; this constructor is used primarily by the log manager
      * @param bytes
      */
-    public Page(byte[] bytes)
-    {
+    public Page(byte[] bytes){
         byteBuffer = ByteBuffer.wrap(bytes);
     }
 

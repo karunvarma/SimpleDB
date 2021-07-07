@@ -20,7 +20,7 @@ public class FileTest {
         FileMgr fileMgr = simpleDB.getFileMgr();
 
 
-        // this block ID is realted to testfile
+        // this block ID is related to testfile
         BlockId blockId = new BlockId("testfile",2);
 
         Page page1 = new Page(fileMgr.getBlockSize());

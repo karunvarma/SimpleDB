@@ -4,7 +4,7 @@ package file;
 import java.util.Objects;
 
 /**
- * Block Id object identifies a specific block by its file name
+ * Block Id object identifies a specific block in a file(name=filename)
  * and blocknum.
  */
 public class BlockId {
